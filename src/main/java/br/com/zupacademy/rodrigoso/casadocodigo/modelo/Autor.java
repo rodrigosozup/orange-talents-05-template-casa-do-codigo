@@ -2,6 +2,7 @@ package br.com.zupacademy.rodrigoso.casadocodigo.modelo;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,11 @@ public class Autor {
 	@NotNull
 	LocalDateTime instante;
 
+	@Deprecated
+	public Autor() {
+		
+	}
+	
 	public Autor(String nome, String email, String descricao) {
 		this.nome = nome;
 		this.email = email;
