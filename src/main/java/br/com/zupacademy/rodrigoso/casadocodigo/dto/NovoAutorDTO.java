@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.zupacademy.rodrigoso.casadocodigo.modelo.Autor;
+import br.com.zupacademy.rodrigoso.casadocodigo.utils.UniqueValue;
 
 public class NovoAutorDTO {
 
@@ -13,6 +14,7 @@ public class NovoAutorDTO {
 	private String nome;
 	@NotBlank(message = "Preenchimento obrigatório")
 	@Email(message = "Email inválido")
+	@UniqueValue(domainClass = Autor.class,fieldName = "email")
 	private String email;
 	@NotBlank(message = "Preenchimento obrigatório")
 	@Length(max = 400, message = "Tamanho máximo de 400 caracteres ")
