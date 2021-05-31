@@ -26,4 +26,11 @@ public class ValidacaoErrorHandler {
 		
 		return errosValidacao;
 	}
+	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ErrorDTO validacaoArgumentoNaoEncontrado(IllegalArgumentException ex){
+		ErrorDTO erroValidacao = new ErrorDTO("",ex.getMessage()); 
+		return erroValidacao;
+	}
 }
