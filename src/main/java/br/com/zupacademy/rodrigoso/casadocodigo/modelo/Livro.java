@@ -74,7 +74,29 @@ public class Livro {
 	public String getTitulo() {
 		return this.titulo; 
 	}
-	
-	
+	public String getResumo() {
+		return resumo;
+	}
+	public String getSumario() {
+		return sumario;
+	}
+	public Double getSaldo() {
+		return saldo;
+	}
+	public int getNumeroDePaginas() {
+		return numeroDePaginas;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public LocalDate getDataPublicacao() {
+		return dataPublicacao;
+	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public Autor getAutor() {
+		return autor;
+	}
 	
 }

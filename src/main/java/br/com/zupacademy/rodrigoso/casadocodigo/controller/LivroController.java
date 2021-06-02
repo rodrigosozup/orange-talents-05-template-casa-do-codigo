@@ -1,6 +1,7 @@
 package br.com.zupacademy.rodrigoso.casadocodigo.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -9,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.zupacademy.rodrigoso.casadocodigo.dto.DetalhesLivroDTO;
 import br.com.zupacademy.rodrigoso.casadocodigo.dto.LivroDTO;
 import br.com.zupacademy.rodrigoso.casadocodigo.dto.NovoLivroDTO;
 import br.com.zupacademy.rodrigoso.casadocodigo.modelo.Livro;
@@ -46,5 +49,15 @@ public class LivroController {
 		List<Livro> livros = livroRepository.findAll(); 
 		List<LivroDTO> livrosDTO = livros.stream().map(e -> new LivroDTO(e)).collect(Collectors.toList()); 
 		return ResponseEntity.ok().body(livrosDTO); 
+	}
+	
+	@GetMapping("/{id}")
+	@Transactional
+	public ResponseEntity<DetalhesLivroDTO> bucarPorId(@PathVariable Long id) {
+		Optional<Livro> livro = livroRepository.findById(id); 
+		if(livro.isPresent()) {
+			return ResponseEntity.ok(new DetalhesLivroDTO(livro.get())); 
+		}
+		return ResponseEntity.notFound().build(); 
 	}
 }
